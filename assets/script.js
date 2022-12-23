@@ -11,6 +11,13 @@ var map = new mapboxgl.Map({
 });
 
 
+// Home button that will zoom the map to its original center in the web page
+document.getElementById('home-button').addEventListener('click', function() {
+  map.setZoom(15);
+  map.setCenter([36.960617, -0.395416]);
+});
+
+
 // Add geolocate control to the map.
 map.addControl(
     new mapboxgl.GeolocateControl({
