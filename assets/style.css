@@ -6,14 +6,22 @@
 }
 
 #map-controls {
+  
   position: absolute;
-  top:150px;
+  top:154px;
   right: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   z-index: 1;
+  
 }
+#home-button {
+  font-size: 15px;
+  width: 30px;
+  height: 25px;
+}
+
 
   
 
