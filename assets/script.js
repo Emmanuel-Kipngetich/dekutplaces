@@ -5,22 +5,11 @@ var map = new mapboxgl.Map({
   style: 'mapbox://styles/mapbox/light-v11',
   center: [36.960617,-0.395416],
   zoom: 15
-
-
   
 });
 
-
-
-
-
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
-
-
-
-
-
 
 document.getElementById('search-button').addEventListener('click', function() {
   var searchInput = document.getElementById('search-input').value;
