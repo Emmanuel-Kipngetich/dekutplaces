@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZW1tYW51ZWwta2lwbmdldGljaCIsImEiOiJjbGI3b3hsa
 
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/streets-v11',
+  style: 'mapbox://styles/mapbox/light-v11',
   center: [36.960617,-0.395416],
   zoom: 15
 
@@ -10,26 +10,6 @@ var map = new mapboxgl.Map({
   
 });
 
-
-// Home button that will zoom the map to its original center in the web page
-document.getElementById('home-button').addEventListener('click', function() {
-  map.setZoom(15);
-  map.setCenter([36.960617, -0.395416]);
-});
-
-
-// Add geolocate control to the map.
-map.addControl(
-    new mapboxgl.GeolocateControl({
-    positionOptions: {
-    enableHighAccuracy: true
-    },
-    // When active the map will receive updates to the device's location as it changes.
-    trackUserLocation: true,
-    // Draw an arrow next to the location dot to indicate which direction the device is heading.
-    showUserHeading: true
-    })
-    );
 
 
 
