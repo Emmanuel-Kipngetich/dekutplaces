@@ -2,11 +2,38 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZW1tYW51ZWwta2lwbmdldGljaCIsImEiOiJjbGI3b3hsa
 
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/streets',
+  style: 'mapbox://styles/mapbox/streets-v11',
   center: [36.960617,-0.395416],
   zoom: 15
   
 });
+
+
+var geolocate = new mapboxgl.GeolocateControl({
+  positionOptions: {
+    enableHighAccuracy: true
+  },
+  trackUserLocation: true
+});
+
+map.addControl(geolocate);
+
+geolocate.on('geolocate', function(event) {
+  var lng = event.coords.longitude;
+  var lat = event.coords.latitude;
+
+  console.log('Geolocated:', lng, lat);
+
+  // Add a marker to the map at the user's location
+  var marker = new mapboxgl.Marker()
+    .setLngLat([lng, lat])
+    .addTo(map);
+});
+
+
+
+
+
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
