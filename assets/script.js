@@ -1,38 +1,27 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiZW1tYW51ZWwta2lwbmdldGljaCIsImEiOiJjbGI3b3hsajUwNnZ5M3ZuNWNtOW9uNzR4In0.6N1mM0xgWDhT44uaNVRVBA';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [36.960647, -0.394718],
+        zoom: 15
+    });
 
-var map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/streets-v11',
-  center: [36.960617,-0.395416],
-  zoom: 15
-  
-});
+    map.addControl(
+        new MapboxDirections({
+            accessToken: mapboxgl.accessToken
+        }),
+        'top-left'
+    );
 
-
-var geolocate = new mapboxgl.GeolocateControl({
+    // Add the geolocate control to the map
+map.addControl(new mapboxgl.GeolocateControl({
+  position: 'top-middle',
   positionOptions: {
     enableHighAccuracy: true
   },
   trackUserLocation: true
-});
-
-map.addControl(geolocate);
-
-geolocate.on('geolocate', function(event) {
-  var lng = event.coords.longitude;
-  var lat = event.coords.latitude;
-
-  console.log('Geolocated:', lng, lat);
-
-  // Add a marker to the map at the user's location
-  var marker = new mapboxgl.Marker()
-    .setLngLat([lng, lat])
-    .addTo(map);
-});
-
-
-
-
+}));
 
 
 // Add zoom and rotation controls to the map.
@@ -49,47 +38,3 @@ document.getElementById('search-button').addEventListener('click', function() {
   }
 });
 
-map.on('load', function() {
-  var conn = new psycopg2.Client({
-    host: 'database-1.c5xfzctcvd8s.af-south-1.rds.amazonaws.com',
-    dbname: 'database-1',
-    user: 'Emmanuel_Kipngetich',
-    password: 'emmanueldekut'
-  });
-  conn.connect();
-  var cursor = conn.cursor();
-  cursor.execute("SELECT address, ST_AsText(location) FROM database-1");
-  var addresses = cursor.fetchall();
-
-  map.addLayer({
-    id: 'points',
-    type: 'symbol',
-    source: {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: addresses.map(function(address) {
-          var longitude = ST_X(ST_GeomFromText(address[1]));
-          var latitude = ST_Y(ST_GeomFromText(address[1]));
-          return {
-            type: 'Feature',
-            properties: {
-              description: address[0]
-            },
-            geometry: {
-              type: 'Point',
-              coordinates: [longitude, latitude]
-            }
-          };
-        })
-      }
-    },
-    layout: {
-      'icon-image': 'marker-15',
-      'text-field': '{description}',
-      'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-      'text-offset': [0, 0.6],
-      'text-anchor': 'top'
-    }
-  });
-});

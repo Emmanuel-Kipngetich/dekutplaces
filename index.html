@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>DeKUT Place Navigation</title>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/style.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-  </head>
-  <body>
-    <div id="search-container">
-      <input id="search-input" type="text" placeholder="Search for a place or address">
-      <button id="search-button">Search</button>
-    </div>
-    <div id="map-controls">
-      
-    </div>
-    <div id="map"></div>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
-    <script src="assets/script.js"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<title>DeKUT Places Navigation</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%;height :100% }
+</style>
+</head>
+(C) By Emmanuel
+<body>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
+<div id="map"></div>
+<script src="assets/script.js"></script>
+
+</body>
 </html>
